@@ -3,32 +3,30 @@
 //Global Variable
 int size,choice,ele;
 
-
 //Creating Stack
 struct stack{
     int arr[100];
     int top;
-
 }st;
 
 //Inserting Element
-void push(int element)
+void push()
 {
-    if((st.top)==size)
+    if((st.top)==size-1)
     {
         printf("\n Stack is Full");
     }
     else
     {
-        st.top--;
+        st.top++;
         printf("\nEnter a Value ");
-        scanf("%s",&ele);
+        scanf("%d",&ele);
         st.arr[st.top]=ele;
     }
 }
 
 //Removing Element
-int pop()
+void pop()
 {
     if((st.top)==-1)
     {
@@ -36,19 +34,16 @@ int pop()
     }
     else
     {
-        int out;
-        out=st.arr[st.top];
-        st.top++;
-        return out;
+        int out=st.arr[st.top];
+        st.top--;
+		printf("removed %d",out);
     }
 }
 
 //Peek
 int peek()
 {
-    int display;
-    display=st.arr[st.rear];
-    return display;
+    return st.arr[st.top];
 }
 
 //Display Stack
@@ -57,7 +52,7 @@ void display()
     if((st.top)>=0)
     {
         printf("\n\nElements in the Stack");
-        for(i=st.top;i>=0;i++)
+        for(int i=0;i<=st.top;i++)
         {
             printf("\n%d",st.arr[i]);
         }
@@ -78,32 +73,37 @@ int main()
 
     do{
         printf("\nEnter Your Choice  ");
-        scanf("%c",&choice);
+        scanf("%d",&choice);
         switch(choice)
         {
         case 1:
             {
-                push(ele);break;
+                push();
+				break;
             }
         case 2:
             {
-                printf("%d",pop());
+                pop();
+				break;
             }
         case 3:
             {
                 printf("%d",peek());
+				break;
             }
         case 4:
             {
-                display();break;
+                display();
+				break;
             }
         case 5:
             {
-                printf("\n\t EXIT Point");break;
+                printf("\n\t EXIT Point");
+				break;
             }
         default:
             printf("\nEnter a correct choice (1,2,3,4,5)");
         }
-    }while(choice=5);
+    }while(choice!=5);
     return 0;
 }
